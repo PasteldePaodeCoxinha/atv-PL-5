@@ -1,3 +1,15 @@
+
+export default interface Endereco {
+    id?: number
+    estado: string;
+    cidade: string;
+    bairro: string;
+    rua: string;
+    numero: string;
+    codigoPostal: string;
+    informacoesAdicionais?: string
+}
+
 // export default class Endereco {
 //     public estado: string;
 //     private cidade: string;
@@ -59,13 +71,3 @@
 //         this.informacoesAdicionais = informacoesAdicionais;
 //     }
 // }
-
-export default interface Endereco {
-    estado: string;
-    cidade: string;
-    bairro: string;
-    rua: string;
-    numero: string;
-    codigoPostal: string;
-    informacoesAdicionais?: string
-}

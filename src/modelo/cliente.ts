@@ -1,11 +1,18 @@
-// import CPF from "./cpf"
-// import Pet from "./pet"
-// import Produto from "./produto"
-// import RG from "./rg"
-// import Servico from "./servico"
-
+import CPF from "./cpf"
 import Endereco from "./endereco"
+import RG from "./rg"
 import Telefone from "./telefone"
+
+export default interface Cliente {
+    id?: number
+    nome: string
+    nomeSocial: string
+    email: string
+    endereco: Endereco
+    telefones: Telefone[]
+    cpf: CPF
+    rg: RG[]
+}
 
 // export default class Cliente {
 //     public id?: number
@@ -86,12 +93,3 @@ import Telefone from "./telefone"
 //         this.valorGasto = Math.floor(ValorGasto * 100) * 0.01
 //     }
 // }
-
-export default interface Cliente {
-    id?: number
-    nome: string
-    nomeSocial: string
-    email: string
-    endereco: Endereco
-    telefones: Array<Telefone>
-}

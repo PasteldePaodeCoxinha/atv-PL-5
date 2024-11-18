@@ -1,3 +1,9 @@
+
+export default interface Telefone {
+    ddd: string,
+    numero: string
+}
+
 // export default class Telefone {
 //     private ddd: string
 //     private numero: string
@@ -14,8 +20,4 @@
 //         return this.numero
 //     }
 // }
-
-export default interface Telefone {
-    ddd: string,
-    numero: string
-}
+ 
