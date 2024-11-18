@@ -1,4 +1,5 @@
 import CPF from "./cpf"
+import Empresa from "./empresa"
 import Endereco from "./endereco"
 import RG from "./rg"
 import Telefone from "./telefone"
@@ -12,6 +13,7 @@ export default interface Cliente {
     telefones: Telefone[]
     cpf: CPF
     rg: RG[]
+    emrepsa: Empresa
 }
 
 // export default class Cliente {

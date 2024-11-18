@@ -2,16 +2,9 @@
 // import Produto from "./produto"
 // import Servico from "./servico"
 
-import Cliente from "./cliente"
-import Produto from "./produto"
-import servico from "./servico"
-
-
 export default interface Empresa {
     id?: number
-    clientes: Cliente[]
-    produtos: Produto[]
-    servicos: servico[]
+    nome: string
 }
 
 // export default class Empresa {
