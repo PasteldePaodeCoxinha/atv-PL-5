@@ -8,5 +8,6 @@ export default interface Compra {
     cliente: Cliente
     pet: Pet
     tipo: string
-    comprado: Produto | Servico
+    compradoPro?: Produto
+    compradoSer?: Servico
 }
