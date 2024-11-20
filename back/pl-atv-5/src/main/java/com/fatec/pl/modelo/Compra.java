@@ -1,7 +1,5 @@
 package com.fatec.pl.modelo;
 
-import java.util.Optional;
-
 import org.springframework.hateoas.RepresentationModel;
 
 import jakarta.persistence.Column;
@@ -31,8 +29,8 @@ public class Compra extends RepresentationModel<Compra> {
 	private String tipo;
 	
 	@Column
-	private Optional<Produto> compradoPro;
+	private Produto compradoPro;
 	
 	@Column
-	private Optional<Servico> compradoSer;
+	private Servico compradoSer;
 }

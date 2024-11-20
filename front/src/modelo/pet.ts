@@ -2,6 +2,7 @@ import Cliente from "./cliente";
 
 export default interface Pet {
     id?: number,
+    nome: string,
     tipo: string,
     raca: string,
     tamanho: string,

@@ -22,6 +22,9 @@ public class Pet extends RepresentationModel<Pet> {
 	private Long id;
 	
 	@Column
+	private String nome;
+	
+	@Column
 	private String tipo;
 	
 	@Column
@@ -31,7 +34,7 @@ public class Pet extends RepresentationModel<Pet> {
 	private String tamanho;
 	
 	@Column
-	private String genenro;
+	private String genero;
 	
 	@OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
 	private Cliente dono;
