@@ -1,10 +1,8 @@
-import Empresa from "./empresa"
 
 export default interface Servico {
     id?: number
     nome: string
     preco: number
-    empresa: Empresa
 }
 
 // export default class Servico {

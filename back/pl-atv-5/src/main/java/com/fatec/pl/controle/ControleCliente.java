@@ -47,11 +47,10 @@ public class ControleCliente {
 		return new ResponseEntity<List<Cliente>>(clientes, HttpStatus.FOUND);
 	}
 
-	@SuppressWarnings("deprecation")
 	@PutMapping("/cliente/atualizar")
 	public ResponseEntity<?> atualizarCliente(@RequestBody Cliente atualizacao) {
 		HttpStatus status = HttpStatus.BAD_REQUEST;
-		Cliente cliente = repositorio.getById(atualizacao.getId());
+		Cliente cliente = repositorio.getReferenceById(atualizacao.getId());
 		if (cliente != null) {
 			atualizador.atualizar(cliente, atualizacao);
 			repositorio.save(cliente);
@@ -70,10 +69,9 @@ public class ControleCliente {
 		return new ResponseEntity<>(status);
 	}
 
-	@SuppressWarnings("deprecation")
 	@DeleteMapping("/cliente/excluir")
 	public ResponseEntity<?> excluirCliente(@RequestBody Cliente exclusao) {
-		Cliente cliente = repositorio.getById(exclusao.getId());
+		Cliente cliente = repositorio.getReferenceById(exclusao.getId());
 		if (cliente == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		} else {
