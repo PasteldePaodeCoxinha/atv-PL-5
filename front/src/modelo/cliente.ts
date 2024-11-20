@@ -11,7 +11,7 @@ export default interface Cliente {
     endereco: Endereco
     telefones: Telefone[]
     cpf: CPF
-    rg: RG[]
+    rg: RG
 }
 
 // export default class Cliente {
