@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fatec.pl.atualizador.AtualizadorPet;
 import com.fatec.pl.hateoas.HateoasPet;
 import com.fatec.pl.modelo.Pet;
 import com.fatec.pl.repositorio.RepositorioPet;
