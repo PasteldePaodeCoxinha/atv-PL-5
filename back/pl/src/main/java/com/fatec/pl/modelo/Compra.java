@@ -2,11 +2,13 @@ package com.fatec.pl.modelo;
 
 import org.springframework.hateoas.RepresentationModel;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,18 +21,18 @@ public class Compra extends RepresentationModel<Compra> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
+	@OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
 	private Cliente cliente;
 	
-	@Column
+	@OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
 	private Pet pet;
 	
 	@Column
 	private String tipo;
 	
-	@Column
+	@OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
 	private Produto compradoPro;
 	
-	@Column
+	@OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
 	private Servico compradoSer;
 }
