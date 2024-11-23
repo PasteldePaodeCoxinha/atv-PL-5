@@ -42,4 +42,7 @@ public class Cliente extends RepresentationModel<Cliente> {
 	
 	@OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
 	private Rg rg;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Pet> pets = new ArrayList<Pet>();
 }

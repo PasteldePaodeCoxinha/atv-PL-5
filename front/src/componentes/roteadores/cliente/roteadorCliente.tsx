@@ -2,12 +2,8 @@ import { useState } from "react";
 import "./roteadorCliente.css"
 import BarraNavegacao from "../../barraNavegacao";
 import FormularioCadastroCliente from "../../cliente/forms/formularioCadastroCliente";
-// import Cliente from "../../../modelo/cliente";
 import ListaCliente from "../../cliente/lista/listaClientes";
 
-// type props = {
-//     clientes: Cliente[]
-// }
 
 export default function RoteadorCliente() {
     const [tela, setTela] = useState<string>("Cadastro")

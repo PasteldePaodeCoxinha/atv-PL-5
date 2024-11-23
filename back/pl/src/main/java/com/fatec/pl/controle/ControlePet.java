@@ -61,6 +61,10 @@ public class ControlePet {
 
 	@PostMapping("/pet/cadastrar")
 	public ResponseEntity<?> cadastrarPet(@RequestBody Pet novo) {
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		System.out.println(novo.getNome());
+		System.out.println(novo.getDono().getNome());
+		
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		if (novo != null) {
 			repositorio.save(novo);

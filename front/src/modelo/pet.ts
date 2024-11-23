@@ -7,7 +7,6 @@ export default interface Pet {
     raca: string,
     tamanho: string,
     genero: string,
-    dono: Cliente
 }
 
 // export default class Pet {

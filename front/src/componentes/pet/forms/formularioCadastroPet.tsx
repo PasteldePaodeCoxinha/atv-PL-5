@@ -1,21 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Cliente from "../../../modelo/cliente";
 import "./formularioCadastroPet.css"
 import Pet from "../../../modelo/pet";
 
-type props = {
-    clientes: Cliente[]
-}
-
-
-export default function FormularioCadastroPet(props: props) {
+export default function FormularioCadastroPet() {
     const [nome, setNome] = useState<string>("")
     const [tipo, setTipo] = useState<string>("")
     const [raca, setRaca] = useState<string>("")
     const [genero, setGenero] = useState<string>("")
     const [tamanho, setTamanho] = useState<string>("")
     const [dono, setDono] = useState<string>("")
+    const [clientes, setClientes] = useState<Cliente[]>([]);
 
     const mudarValorNome = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNome(e.target.value)
@@ -41,40 +37,82 @@ export default function FormularioCadastroPet(props: props) {
         setDono(e.target.value)
     }
 
-    const adicionarPetCliente = (e: React.ChangeEvent<HTMLFormElement>) => {
+    const getClientes = useCallback(async () => {
+        try {
+            const response = await fetch("http://localhost:32831/cliente/clientes", {
+                method: "GET",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+            })
+
+            const data = await response.json()
+
+            if (response.status === 302) {
+                setClientes(data)
+            } else {
+                alert(data)
+            }
+
+        } catch (error) {
+            alert((error as Error).message)
+        }
+    }, [])
+
+    const adicionarPetCliente = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        let cachorroTemDono = false
+        // let cachorroTemDono = false
 
-        props.clientes.forEach(c => {
-            if ((c.getPets.filter(p => p.getNome === nome)).length > 0) {
-                alert("Esse pet já tem um dono")
-                cachorroTemDono = true
-            }
-        })
+        // if (cachorroTemDono) {
+        //     return
+        // }
 
-        if (cachorroTemDono) {
-            return
-        }
-
-        const cliente = props.clientes.find(c => c.nome === dono)
+        const cliente = clientes.find(c => c.nome === dono)
 
         if (!cliente) {
             alert("Esse dono não existe")
             return
         }
 
-        const pet = new Pet(nome, tipo, raca, genero, tamanho)
+        const pet: Pet = { nome: nome, tipo: tipo, raca: raca, genero: genero, tamanho: tamanho }
 
-        cliente.getPets.push(pet)
+        cliente.pets.push(pet)
 
-        setNome("")
-        setTipo("")
-        setRaca("")
-        setGenero("")
-        setTamanho("")
-        setDono("")
+        try {
+            const response = await fetch("http://localhost:32831/cliente/atualizar", {
+                method: "PUT",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                body: JSON.stringify(cliente)
+            })
+            if (response.ok) {
+                alert("Pet cadastrado")
+                setNome("")
+                setTipo("")
+                setRaca("")
+                setGenero("")
+                setTamanho("")
+                setDono("")
+            } else {
+                console.log("Erro ao cadastrar");
+            }
+
+        } catch (error) {
+            alert((error as Error).message)
+            console.log((error as Error).message);
+            return
+        }
     }
+
+    useEffect(() => {
+        getClientes()
+    }, [getClientes])
 
     return (
         <div className="containerFormularioPet">
@@ -86,7 +124,7 @@ export default function FormularioCadastroPet(props: props) {
                         onChange={mudarValorDono}
                         value={dono}>
                         <option value="" disabled>Dono</option>
-                        {props.clientes.map((c, i) => {
+                        {clientes.map((c, i) => {
                             return (
                                 <option
                                     value={c.nome}

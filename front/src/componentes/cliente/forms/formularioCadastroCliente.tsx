@@ -1,15 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from "react";
-// import CPF from "../../../modelo/cpf";
-// import RG from "../../../modelo/rg";
 import "./formularioCadastroCliente.css"
 import Telefone from "../../../modelo/telefone";
 import Endereco from "../../../modelo/endereco";
 import Cliente from "../../../modelo/cliente";
-
-// type props = {
-//     clientes: Cliente[]
-// }
 
 export default function FormularioCadastroCliente() {
     const [nome, setNome] = useState<string>("")
@@ -22,10 +16,10 @@ export default function FormularioCadastroCliente() {
     const [estado, setEstado] = useState<string>("")
     const [cep, setCep] = useState<string>("")
     const [infoAdi, setInfoAdi] = useState<string>("")
-    // const [valorCpf, setValorCpf] = useState<string>("")
-    // const [dataCpf, setDataCpf] = useState<string>("")
-    // const [valorRg, setValorRg] = useState<string>("")
-    // const [dataRg, setDataRg] = useState<string>("")
+    const [valorCpf, setValorCpf] = useState<string>("")
+    const [dataCpf, setDataCpf] = useState<string>("")
+    const [valorRg, setValorRg] = useState<string>("")
+    const [dataRg, setDataRg] = useState<string>("")
     const [telefone1, setTelefone1] = useState<string>("")
     const [telefone2, setTelefone2] = useState<string>("")
 
@@ -78,30 +72,30 @@ export default function FormularioCadastroCliente() {
         setInfoAdi(e.target.value)
     }
 
-    // const mudarValorCpf = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     if (!isNaN(Number(e.target.value).valueOf())) {
-    //         setValorCpf(e.target.value)
-    //     } else {
-    //         setValorCpf(valorCpf)
-    //     }
+    const mudarValorCpf = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!isNaN(Number(e.target.value).valueOf())) {
+            setValorCpf(e.target.value)
+        } else {
+            setValorCpf(valorCpf)
+        }
 
-    // }
+    }
 
-    // const mudarValorDataCpf = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     setDataCpf(e.target.value)
-    // }
+    const mudarValorDataCpf = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setDataCpf(e.target.value)
+    }
 
-    // const mudarValorRg = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // if (!isNaN(Number(e.target.value).valueOf())) {
-    //     setValorRg(e.target.value)
-    // } else {
-    //     setValorRg(valorCpf)
-    // }
-    // }
+    const mudarValorRg = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!isNaN(Number(e.target.value).valueOf())) {
+            setValorRg(e.target.value)
+        } else {
+            setValorRg(valorCpf)
+        }
+    }
 
-    // const mudarValorDataRg = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     setDataRg(e.target.value)
-    // }
+    const mudarValorDataRg = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setDataRg(e.target.value)
+    }
 
     const mudarValorTelefone1 = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!isNaN(Number(e.target.value).valueOf())) {
@@ -142,15 +136,14 @@ export default function FormularioCadastroCliente() {
             informacoesAdicionais: (infoAdi !== "" ? infoAdi : undefined)
         }
 
-        // let datasCpf = dataCpf.split("")
-        // let datasRg = dataRg.split("-")
-
         const cliente: Cliente = {
             nome: nome,
             nomeSocial: nomeSocial,
             email: email,
             endereco: endereco,
-            telefones: listaTel
+            telefones: listaTel,
+            cpf: { valor: valorCpf, dataEmissao: new Date(dataCpf) },
+            rg: { valor: valorRg, dataEmissao: new Date(dataRg) }
         }
 
         try {
@@ -175,10 +168,10 @@ export default function FormularioCadastroCliente() {
                 setEstado("")
                 setCep("")
                 setInfoAdi("")
-                // setValorCpf("")
-                // setDataCpf("")
-                // setValorRg("")
-                // setDataRg("")
+                setValorCpf("")
+                setDataCpf("")
+                setValorRg("")
+                setDataRg("")
                 setTelefone1("")
                 setTelefone2("")
             } else {
@@ -227,7 +220,7 @@ export default function FormularioCadastroCliente() {
 
                 </div>
 
-                {/*<div className="linhaFormularioCadastroCliente">
+                <div className="linhaFormularioCadastroCliente">
                     <div className="inputsComDataFormsCliente">
 
                         <input type="text"
@@ -246,9 +239,9 @@ export default function FormularioCadastroCliente() {
                             required />
 
                     </div>
-                </div>*/}
+                </div>
 
-                {/* <div className="linhaFormularioCadastroCliente">
+                <div className="linhaFormularioCadastroCliente">
                     <div className="inputsComDataFormsCliente">
 
                         <input type="text"
@@ -266,7 +259,7 @@ export default function FormularioCadastroCliente() {
                             required />
 
                     </div>
-                </div> */}
+                </div>
 
                 <div className="linhaFormularioCadastroCliente">
 

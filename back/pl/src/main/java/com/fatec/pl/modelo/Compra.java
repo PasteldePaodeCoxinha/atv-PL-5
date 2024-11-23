@@ -21,18 +21,18 @@ public class Compra extends RepresentationModel<Compra> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Cliente cliente;
 	
-	@OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Pet pet;
 	
 	@Column
 	private String tipo;
 	
-	@OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Produto compradoPro;
 	
-	@OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Servico compradoSer;
 }

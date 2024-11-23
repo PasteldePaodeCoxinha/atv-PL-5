@@ -3,14 +3,10 @@ import "./listaClientes.css"
 import AlterarCliente from "../alterar/alterarCliente";
 import Cliente from "../../../modelo/cliente";
 
-// type props = {
-//     clientes: Cliente[]
-// }
-
 export default function ListaCliente() {
     const [clientes, setClientes] = useState<Cliente[]>([])
     const [cliente, setCliente] = useState<Cliente | undefined>(undefined)
-    // const [ordemLista, setOrdemLista] = useState<number>(0)
+    const [ordemLista, setOrdemLista] = useState<number>(0)
 
     const pegarUmCliente = useCallback(async (nomeEscolhido: string) => {
         const cliente = clientes.find(c => c.nome === nomeEscolhido)
@@ -131,14 +127,14 @@ export default function ListaCliente() {
         <div className="containerListaCliente">
             {cliente === undefined ? (
                 <div className="clientesCadastrados">
-                    {/* <select className="seletorOrdemListaCliente"
+                    <select className="seletorOrdemListaCliente"
                         onChange={e => setOrdemLista(Number(e.target.value).valueOf())}
                     >
                         <option value={0}>Ordenar por ordem cadastrado</option>
                         <option value={1}>Ordenar por qtd produtos consumidos</option>
                         <option value={2}>Ordenar por qtd serviços consumidos</option>
                         <option value={3}>Ordenar por valor gasto</option>
-                    </select> */}
+                    </select>
 
                     <table className="tabelaClientes">
                         <thead>
